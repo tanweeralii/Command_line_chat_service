@@ -1,0 +1,4 @@
+CREATE DATABASE login;
+USE login;
+CREATE TABLE credentials(username VARCHAR(16), password BLOB);
+INSERT INTO credentials VALUES('MasterH', AES_ENCRYPT('abcde', 'tanweer_ali')), ('Heisenberg', AES_ENCRYPT('abcde', 'tanweer_ali')), ('Hertz', AES_ENCRYPT('abcde', 'tanweer_ali')), ('Holland', AES_ENCRYPT('abcde', 'tanweer_ali'));
