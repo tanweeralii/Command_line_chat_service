@@ -37,10 +37,11 @@ def receive_commands(connections):
             if string=='@TanweerAli#:~' + 'list':
                 conn.send(str.encode(length))
             else:
-                connections.remove(conn)
                 for i in connections:
-                    i.send(str.encode(string))
-                connections.append(conn)
+                    if i==conn:
+                        continue
+                    else:
+                        i.send(str.encode(string))
 
 def list_connections(connections):
     while True:
