@@ -40,8 +40,6 @@ def login(logpasswd, password, loguname):
 	t1.start()
 	t2.start()
 
-	print("YOU ARE OUT")
-
 	sys.exit(0)
     else:
         print("Invalid Password")
