@@ -11,34 +11,34 @@ def login(logpasswd, password, loguname):
 
 	s.connect((host, port))
 	print("CONNECTED! USE 'list' COMMAND TO KNOW NUMBER OF USERS ONLINE AND USE 'quit' COMMNAD TO COME OUT OF CHATROOM!")
-	string = '@'+loguname+'#:~'
 	
-	def quit():
-    		t1.join()
-    		t2.join()
-    		s.close
-		print("YOU ARE OUT")
-	
+	string = '@' + loguname + '#:~'
 	def send_commands():
     		while True:
-        		cmd = input("@"+loguname+"#:~")
+        		cmd = input("@" + loguname + "#:~ ")
         		if cmd=='quit':
+				s.send(str.encode(string + cmd))
             			break
         		else:
             			s.send(str.encode(string + cmd))
-		quit()
-	
-	def receive_commands():
-    		while True:
-        		data = s.recv(1024)
-        		if len(data) > 0:
-            			print(str(data[:].decode("utf-8")), end='')
+		def receive_commands():
+    			while True:
+        			data = s.recv(1024)
+				string = str(data[:].decode("utf-8"))
+				if string == "YOU ARE OUT":
+					break
+        			elif len(data) > 0:
+            				print(string)
+			print(string)
 
 	t1=threading.Thread(target=send_commands)
 	t2=threading.Thread(target=receive_commands)
 
 	t1.start()
 	t2.start()
+	
+	t1.join()
+	t2.join()
 
 	sys.exit(0)
     else:
